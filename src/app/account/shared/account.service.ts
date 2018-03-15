@@ -16,7 +16,7 @@ export class AccountService {
     }];
 
     accountRegisterGuestForm: {} = {
-        Form: {
+        form: {
             button: {
                 type: 'submit',
                 text: 'send'
@@ -38,11 +38,6 @@ export class AccountService {
                     required: true
                 },
                 {
-                    label: 'Email',
-                    type: 'email',
-                    required: true
-                },
-                {
                     label: 'Phone',
                     type: 'text',
                     required: false
@@ -54,7 +49,7 @@ export class AccountService {
     };
 
     accountRegisterAgencyForm: {} = {
-        Form: {
+        form: {
             button: {
                 type: 'submit',
                 text: 'send'
@@ -87,7 +82,7 @@ export class AccountService {
     };
 
     accountRegisterCompanyForm: {} = {
-        Form: {
+        form: {
             button: {
                 type: 'submit',
                 text: 'send'

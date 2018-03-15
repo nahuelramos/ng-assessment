@@ -1,5 +1,11 @@
 <div class="account-register">
-  <div class="account-register__group">
+  <h4 class="account-register__title">{{ formData.title }}</h4>
 
+  <div class="account-register__group" *ngFor="let input of formData.inputs">
+      <label for="" class="account-register__group-label">{{ input.label }}</label>
+      <input type="{{ input.type }}" class="account-register__group-input">
   </div>
+
+  <label for="" class="account-register__label">{{ formData.legend }}</label>
+  <button type="{{ formData.button.type }}" class="account-register__button">{{ formData.button.text }}</button>
 </div>

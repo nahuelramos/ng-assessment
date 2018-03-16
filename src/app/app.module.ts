@@ -12,9 +12,9 @@ import { AccountRegisterComponent } from './account/account-register/account-reg
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'account-register', component: AccountRegisterComponent },
+  { path: 'account-register/:accountType', component: AccountRegisterComponent },
   { path: 'account-type', component: AccountTypeComponent }
-]
+];
 
 @NgModule({
   declarations: [

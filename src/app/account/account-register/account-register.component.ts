@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../shared/account.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-account-register',
@@ -9,11 +10,13 @@ import { AccountService } from '../shared/account.service';
 })
 export class AccountRegisterComponent implements OnInit {
   formData: any;
+  accountType: string;
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.accountService.getAccountRegisterForm('guest').subscribe(
+    this.accountType = this.route.snapshot.params['accountType'];
+    this.accountService.getAccountRegisterForm(this.accountType).subscribe(
       (serverResponse: any) => { this.formData = serverResponse.form; },
       (error: any[]) => { alert(error); }
     );

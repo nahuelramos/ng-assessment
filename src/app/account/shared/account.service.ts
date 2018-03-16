@@ -2,18 +2,26 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 
 export class AccountService {
-    accountTypeForm: any[] = [{
-        title: 'A hotel guest',
-        active: false
-      },
-      {
-        title: 'A travel agency',
-        active: false
-      },
-      {
-        title: 'A company',
-        active: false
-    }];
+    accountTypeForm: {} = {
+        form: {
+            buttons: [
+                {
+                    text: 'A hotel guest',
+                    id: 'guest'
+                },
+                {
+                    text: 'A travel agency',
+                    id: 'guest'
+                },
+                {
+                    text: 'A company',
+                    id: 'guest'
+                }
+            ],
+            legend: 'Enjoy a 10% discount on your reservation just for signup',
+            title: 'What kind of user are you?'
+        }
+    };;
 
     accountRegisterGuestForm: {} = {
         form: {

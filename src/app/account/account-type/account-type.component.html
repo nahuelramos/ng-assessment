@@ -1,5 +1,5 @@
 <div class="account-type">
-  <div class="account-type__group" *ngFor="let component of arrayFormType">
-    {{ component.title }}
+  <div class="account-type__group" *ngFor="let button of arrayFormType.buttons">
+    <button class="account-type__group-btn" (click)="accountTypeSelected(button.id)"> {{ button.text }} </button>
   </div>
 </div>

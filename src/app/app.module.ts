@@ -10,8 +10,7 @@ import { AccountTypeComponent } from './account/account-type/account-type.compon
 import { AccountRegisterComponent } from './account/account-register/account-register.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: 'account-type', pathMatch: 'full' },
   { path: 'account-register/:accountType', component: AccountRegisterComponent },
   { path: 'account-type', component: AccountTypeComponent }
 ];

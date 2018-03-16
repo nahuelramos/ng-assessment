@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../shared/account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account-type',
@@ -8,15 +9,18 @@ import { AccountService } from '../shared/account.service';
   providers: [AccountService]
 })
 export class AccountTypeComponent implements OnInit {
-  arrayFormType: any[];
+  arrayFormType: {};
 
-  constructor(private accountService: AccountService) {}
+  constructor(private accountService: AccountService, private router: Router) {}
 
   ngOnInit() {
     this.accountService.getAccountForm().subscribe(
-      (serverResponse: any[]) => { this.arrayFormType = serverResponse; },
-      (error: any[]) => { alert(error); }
+      (serverResponse: any) => { this.arrayFormType = serverResponse.form; },
+      (error: any) => { alert(error); }
     );
   }
 
+  accountTypeSelected(accountType) {
+    this.router.navigate(['account-register', accountType]);
+  }
 }

@@ -149,6 +149,9 @@ export class AccountService {
     accountRegisterCompletedForLogin: {} = {
         registerSuccess: true,
         form: {
+            button: {
+                text: 'Continue'
+            },
             list: [
                 {
                     id: 'discount',
@@ -167,8 +170,12 @@ export class AccountService {
     accountRegisterCompleted: {} = {
         registerSuccess: true,
         form: {
+            button: {
+                text: 'Continue'
+            },
             list: [],
             subTitle: 'Thank you!',
+            text: 'Shortly we will be in contact',
             title: 'Welcome'
         }
     };

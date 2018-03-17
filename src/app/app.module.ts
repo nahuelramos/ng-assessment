@@ -3,19 +3,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { AccountComponent } from './account/account.component';
+import { AccountRegisterComponent } from './account/account-register/account-register.component';
+import { AccountTypeComponent } from './account/account-type/account-type.component';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { AccountComponent } from './account/account.component';
-import { AccountTypeComponent } from './account/account-type/account-type.component';
-import { AccountRegisterComponent } from './account/account-register/account-register.component';
-
-const appRoutes: Routes = [
-  { path: '', redirectTo: 'account-type', pathMatch: 'full' },
-  { path: 'account-register/:accountType', component: AccountRegisterComponent },
-  { path: 'account-type', component: AccountTypeComponent },
-  { path: '**', redirectTo: 'account-type'}
-];
 
 @NgModule({
   declarations: [
@@ -30,7 +24,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

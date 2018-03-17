@@ -1,4 +1,4 @@
-<div class="account-register">
+<div class="account-register" *ngIf="registerSuccess === null">
   <h4 class="account-register__title">{{ formData.title }}</h4>
   <form class="account-register__form" (ngSubmit)="register(form)" #form="ngForm">
     <div class="account-register__group" *ngFor="let input of formData.inputs">
@@ -13,4 +13,18 @@
     <label for="" class="account-register__label">{{ formData.legend }}</label>
     <button type="{{ formData.button.type }}" class="account-register__button" [disabled]="!form.valid">{{ formData.button.text }}</button>
   </form>
+</div>
+<div class="account-register-completed">
+  <div class="account-register-completed__unsuccessful" *ngIf="registerSuccess === false">
+    <h4>Oops! We found some errors please try again! :(</h4>
+  </div>
+  <div class="account-register-completed__success" *ngIf="registerSuccess">
+    <h3>{{ formData.title }}</h3>
+    <h4>{{ formData.subTitle }}</h4>
+    <ul class="account-register-completed__list">
+      <li class="account-register-completed__list-item" *ngFor="let item of formData.list">
+        {{ item.text }}
+      </li>
+    </ul>
+  </div>
 </div>

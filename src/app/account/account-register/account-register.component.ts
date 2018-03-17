@@ -14,6 +14,7 @@ import { AccountService } from '../shared/account.service';
 export class AccountRegisterComponent implements OnInit, OnDestroy {
   accountType: string;
   formData: any;
+  registerSuccess: boolean = null;
   serviceObservableGet: Subscription;
   serviceObservableSend: Subscription;
 
@@ -34,8 +35,11 @@ export class AccountRegisterComponent implements OnInit, OnDestroy {
 
   register(form: NgForm) {
     this.serviceObservableSend = this.accountService.sendAccountRegister(this.extractValuesOfForm(form)).subscribe(
-      (serverResponse: any) => { this.formData = serverResponse; },
-      (error: any) => { alert(error); }
+      (serverResponse: any) => {
+        this.formData = serverResponse.form;
+        this.registerSuccess = serverResponse.registerSuccess;
+      },
+      (error: any) => { this.registerSuccess = false; alert(error); }
     );
   }
 

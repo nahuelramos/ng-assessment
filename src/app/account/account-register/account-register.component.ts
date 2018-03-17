@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { AccountService } from '../shared/account.service';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs/Subscription';
+
+import { ActivatedRoute } from '@angular/router';
+import { AccountService } from '../shared/account.service';
 
 @Component({
   selector: 'app-account-register',
@@ -9,30 +11,40 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./account-register.component.css'],
   providers: [AccountService]
 })
-export class AccountRegisterComponent implements OnInit {
-  formData: any;
+export class AccountRegisterComponent implements OnInit, OnDestroy {
   accountType: string;
+  formData: any;
+  serviceObservableGet: Subscription;
+  serviceObservableSend: Subscription;
 
   constructor(private accountService: AccountService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.accountType = this.route.snapshot.params['accountType'];
-    this.accountService.getAccountRegisterForm(this.accountType).subscribe(
+    this.serviceObservableGet = this.accountService.getAccountRegisterForm(this.accountType).subscribe(
       (serverResponse: any) => { this.formData = serverResponse.form; },
-      (error: any[]) => { alert(error); }
+      (error: any) => { alert(error); }
     );
   }
 
+  ngOnDestroy() {
+    this.serviceObservableGet.unsubscribe();
+    this.serviceObservableSend.unsubscribe();
+  }
+
   register(form: NgForm) {
-    this.extractValuesOfForm(form);
+    this.serviceObservableSend = this.accountService.sendAccountRegister(this.extractValuesOfForm(form)).subscribe(
+      (serverResponse: any) => { this.formData = serverResponse; },
+      (error: any) => { alert(error); }
+    );
   }
 
   extractValuesOfForm(form: NgForm) {
-    let dataForServer = {
+    const dataForServer = {
       inputs: [form.value],
       accountType: this.accountType
     };
-    
+
     return dataForServer;
   }
 

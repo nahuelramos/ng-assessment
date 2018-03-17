@@ -21,7 +21,7 @@ export class AccountService {
             legend: 'Enjoy a 10% discount on your reservation just for signup',
             title: 'What kind of user are you?'
         }
-    };;
+    };
 
     accountRegisterGuestForm: {} = {
         form: {
@@ -146,7 +146,25 @@ export class AccountService {
         }
     };
 
-    getAccountForm() {
+    accountRegisterCompleted: {} = {
+        registerSuccess: true,
+        form: {
+            list: [
+                {
+                    id: 'discount',
+                    text: 'Enjoy a 10% discount on your reservation'
+                },
+                {
+                    id: 'time',
+                    text: '24hs / 365 days phone 900 - 000 - 0000'
+                }
+            ],
+            subTitle: 'Advantages',
+            title: 'Welcome'
+        }
+    };
+
+    getAccountTypeForm() {
         return Observable.create((observer: Observer<any>) => {
             observer.next(this.accountTypeForm);
         });
@@ -162,6 +180,12 @@ export class AccountService {
                 case 'company': observer.next(this.accountRegisterCompanyForm);
                     break;
             }
+        });
+    }
+
+    sendAccountRegister(formData) {
+        return Observable.create((observer: Observer<any>) => {
+            observer.next(this.accountRegisterCompleted);
         });
     }
 }

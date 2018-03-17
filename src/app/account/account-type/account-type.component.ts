@@ -14,7 +14,7 @@ export class AccountTypeComponent implements OnInit {
   constructor(private accountService: AccountService, private router: Router) {}
 
   ngOnInit() {
-    this.accountService.getAccountForm().subscribe(
+    this.accountService.getAccountTypeForm().subscribe(
       (serverResponse: any) => { this.arrayFormType = serverResponse.form; },
       (error: any) => { alert(error); }
     );

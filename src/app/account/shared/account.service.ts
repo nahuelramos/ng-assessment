@@ -11,11 +11,11 @@ export class AccountService {
                 },
                 {
                     text: 'A travel agency',
-                    id: 'guest'
+                    id: 'agency'
                 },
                 {
                     text: 'A company',
-                    id: 'guest'
+                    id: 'company'
                 }
             ],
             legend: 'Enjoy a 10% discount on your reservation just for signup',

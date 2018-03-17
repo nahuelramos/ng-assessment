@@ -1,11 +1,16 @@
 <div class="account-register">
   <h4 class="account-register__title">{{ formData.title }}</h4>
-
-  <div class="account-register__group" *ngFor="let input of formData.inputs">
-      <label for="" class="account-register__group-label">{{ input.label }}</label>
-      <input type="{{ input.type }}" class="account-register__group-input">
-  </div>
-
-  <label for="" class="account-register__label">{{ formData.legend }}</label>
-  <button type="{{ formData.button.type }}" class="account-register__button">{{ formData.button.text }}</button>
+  <form class="account-register__form" (ngSubmit)="register(form)" #form="ngForm">
+    <div class="account-register__group" *ngFor="let input of formData.inputs">
+      <label [for]="input.id" class="account-register__group-label">{{ input.label }} {{ input.required ? '*' : '' }}</label>
+      <input type="{{ input.type }}" class="account-register__group-input"  
+      [required]="input.required"
+      [pattern]="input.pattern" 
+      [name]="input.id" 
+      [maxlength]="input.maxLength"
+      ngModel>
+    </div>
+    <label for="" class="account-register__label">{{ formData.legend }}</label>
+    <button type="{{ formData.button.type }}" class="account-register__button" [disabled]="!form.valid">{{ formData.button.text }}</button>
+  </form>
 </div>

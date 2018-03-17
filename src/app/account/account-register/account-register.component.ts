@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../shared/account.service';
 import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-account-register',
@@ -20,6 +21,19 @@ export class AccountRegisterComponent implements OnInit {
       (serverResponse: any) => { this.formData = serverResponse.form; },
       (error: any[]) => { alert(error); }
     );
+  }
+
+  register(form: NgForm) {
+    this.extractValuesOfForm(form);
+  }
+
+  extractValuesOfForm(form: NgForm) {
+    let dataForServer = {
+      inputs: [form.value],
+      accountType: this.accountType
+    };
+    
+    return dataForServer;
   }
 
 }

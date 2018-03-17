@@ -26,29 +26,37 @@ export class AccountService {
     accountRegisterGuestForm: {} = {
         form: {
             button: {
-                type: 'submit',
-                text: 'send'
+                text: 'send',
+                type: 'submit'
             },
             inputs: [
                 {
+                    id: 'name',
                     label: 'Name',
-                    type: 'text',
-                    required: true
+                    maxLength: 30,
+                    required: true,
+                    type: 'text'
                 },
                 {
+                    id: 'lastName',
                     label: 'Last name',
-                    type: 'text',
-                    required: true
+                    maxLength: 20,
+                    required: true,
+                    type: 'text'
                 },
                 {
+                    id: 'email',
                     label: 'Email',
-                    type: 'email',
-                    required: true
+                    maxLength: 40,
+                    required: true,
+                    type: 'email'
                 },
                 {
+                    id: 'phone',
                     label: 'Phone',
-                    type: 'text',
-                    required: false
+                    pattern: '^(\([0-9]{3}\)|[0-9]{3}-)[0-9]{3}-[0-9]{4}$',
+                    required: false,
+                    type: 'text'
                 },
             ],
             legend: '* required fields',
@@ -59,29 +67,37 @@ export class AccountService {
     accountRegisterAgencyForm: {} = {
         form: {
             button: {
-                type: 'submit',
-                text: 'send'
+                text: 'send',
+                type: 'submit'
             },
             inputs: [
                 {
+                    id: 'agencyName',
                     label: 'Agency name',
-                    type: 'text',
-                    required: true
+                    maxLength: 40,
+                    required: true,
+                    type: 'text'
                 },
                 {
+                    id: 'agencyContactName',
                     label: 'Contact name',
-                    type: 'text',
-                    required: true
+                    maxLength: 30,
+                    required: true,
+                    type: 'text'
                 },
                 {
+                    id: 'agencyContactName',
                     label: 'Contact email',
-                    type: 'email',
-                    required: true
+                    maxLength: 40,
+                    required: true,
+                    type: 'email'
                 },
                 {
+                    id: 'agencyCode',
                     label: 'Agency id code',
-                    type: 'text',
-                    required: false
+                    maxLength: 40,
+                    required: false,
+                    type: 'text'
                 }
             ],
             legend: '* required fields',
@@ -92,29 +108,37 @@ export class AccountService {
     accountRegisterCompanyForm: {} = {
         form: {
             button: {
-                type: 'submit',
-                text: 'send'
+                text: 'send',
+                type: 'submit'
             },
             inputs: [
                 {
+                    id: 'companyName',
                     label: 'Company name',
-                    type: 'text',
-                    required: true
+                    maxLength: 40,
+                    required: true,
+                    type: 'text'
                 },
                 {
+                    id: 'companyEmail',
                     label: 'Contact email',
-                    type: 'email',
-                    required: true
+                    maxLength: 40,
+                    required: true,
+                    type: 'email'
                 },
                 {
+                    id: 'companyPhone',
                     label: 'Phone',
-                    type: 'text',
-                    required: true
+                    pattern: '^(\([0-9]{3}\)|[0-9]{3}-)[0-9]{3}-[0-9]{4}$',
+                    required: true,
+                    type: 'text'
                 },
                 {
+                    id: 'companyComments',
                     label: 'Comments', // text-area
-                    type: 'text',
-                    required: false
+                    maxLength: 200,
+                    required: false,
+                    type: 'text'
                 }
             ],
             legend: '* required fields',

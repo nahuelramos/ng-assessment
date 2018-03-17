@@ -34,7 +34,7 @@ export class AccountRegisterComponent implements OnInit, OnDestroy {
   }
 
   register(form: NgForm) {
-    this.serviceObservableSend = this.accountService.sendAccountRegister(this.extractValuesOfForm(form)).subscribe(
+    this.serviceObservableSend = this.accountService.sendAccountRegister(this.extractValuesOfForm(form), false).subscribe(
       (serverResponse: any) => {
         this.formData = serverResponse.form;
         this.registerSuccess = serverResponse.registerSuccess;

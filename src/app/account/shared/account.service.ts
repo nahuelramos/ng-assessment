@@ -146,7 +146,7 @@ export class AccountService {
         }
     };
 
-    accountRegisterCompleted: {} = {
+    accountRegisterCompletedForLogin: {} = {
         registerSuccess: true,
         form: {
             list: [
@@ -160,6 +160,15 @@ export class AccountService {
                 }
             ],
             subTitle: 'Advantages',
+            title: 'Welcome'
+        }
+    };
+
+    accountRegisterCompleted: {} = {
+        registerSuccess: true,
+        form: {
+            list: [],
+            subTitle: 'Thank you!',
             title: 'Welcome'
         }
     };
@@ -183,9 +192,13 @@ export class AccountService {
         });
     }
 
-    sendAccountRegister(formData) {
+    sendAccountRegister(formData, userLogged) {
         return Observable.create((observer: Observer<any>) => {
-            observer.next(this.accountRegisterCompleted);
+            if (userLogged) {
+                observer.next(this.accountRegisterCompletedForLogin);
+            } else {
+                observer.next(this.accountRegisterCompleted);
+            }
         });
     }
 }

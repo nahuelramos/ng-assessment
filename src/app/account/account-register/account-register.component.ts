@@ -21,7 +21,7 @@ export class AccountRegisterComponent implements OnInit, OnDestroy {
   user: any = {};
 
   constructor(
-    private accountService: AccountService, 
+    private accountService: AccountService,
     private route: ActivatedRoute,
     private loginService: LoginService
   ) { }

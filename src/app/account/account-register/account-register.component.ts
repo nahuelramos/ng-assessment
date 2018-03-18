@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { ActivatedRoute } from '@angular/router';
 import { AccountService } from '../shared/account.service';
+import { LoginService } from '../../login/login.service';
 
 @Component({
   selector: 'app-account-register',
@@ -17,8 +18,13 @@ export class AccountRegisterComponent implements OnInit, OnDestroy {
   registerSuccess: boolean = null;
   serviceObservableGet: Subscription;
   serviceObservableSend: Subscription;
+  user: any = {};
 
-  constructor(private accountService: AccountService, private route: ActivatedRoute) { }
+  constructor(
+    private accountService: AccountService, 
+    private route: ActivatedRoute,
+    private loginService: LoginService
+  ) { }
 
   ngOnInit() {
     this.accountType = this.route.snapshot.params['accountType'];
@@ -34,9 +40,16 @@ export class AccountRegisterComponent implements OnInit, OnDestroy {
   }
 
   register(form: NgForm) {
-    this.serviceObservableSend = this.accountService.sendAccountRegister(this.extractValuesOfForm(form), false).subscribe(
+    const isUserLoggedIn = this.loginService.isUserLoggedIn();
+
+    this.serviceObservableSend = this.accountService.sendAccountRegister(
+      this.extractValuesOfForm(form), isUserLoggedIn).subscribe(
       (serverResponse: any) => {
         this.formData = serverResponse.form;
+        if (isUserLoggedIn) {
+          this.user = this.loginService.getUser();
+          console.log(this.user);
+        }
         this.registerSuccess = serverResponse.registerSuccess;
       },
       (error: any) => { this.registerSuccess = false; alert(error); }

@@ -3,6 +3,7 @@ import { Observer } from 'rxjs/Observer';
 
 export class LoginService {
     isLoggedIn = false;
+    user: any;
 
     loginForm: {} = {
         form: {
@@ -42,8 +43,13 @@ export class LoginService {
         });
     }
 
+    getUser() {
+        return this.user;
+    }
+
     login(user: any) {
         this.isLoggedIn = true;
+        this.user = user;
         return Observable.create((observer: Observer<any>) => {
             observer.next(this.isLoggedIn);
         });

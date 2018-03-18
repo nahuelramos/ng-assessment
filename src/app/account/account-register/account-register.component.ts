@@ -28,6 +28,7 @@ export class AccountRegisterComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.accountType = this.route.snapshot.params['accountType'];
+    
     this.serviceObservableGet = this.accountService.getAccountRegisterForm(this.accountType).subscribe(
       (serverResponse: any) => { this.formData = serverResponse.form; },
       (error: any) => { alert(error); }

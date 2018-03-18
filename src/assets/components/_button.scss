@@ -1,0 +1,36 @@
+.btn {
+    transition: all .2s;
+
+    &:link,
+    &:visited {
+        text-transform: uppercase;
+        text-decoration: none;     
+    }
+    
+    &--grey {
+        width: 25rem;
+        background-color: $color-grey-dark;
+        color: $color-white;
+        padding: 1.2rem 3.5rem;
+        text-align: center;
+        display: inline-block;
+        font-size: 1.6rem;
+        border: none;
+        margin-left: 3rem;
+        border: 1px solid transparent;   
+    }
+
+    &:active,
+    &:hover {
+        background-color: rgba($color-grey-dark-4, 0.3);
+        color: $color-white;
+        border: 1px solid $color-grey-dark;
+    }
+
+   &:disabled,
+   &[disabled] {
+        border: 1px solid #999999;
+        background-color: #cccccc;
+        color: #666666;
+    }
+}

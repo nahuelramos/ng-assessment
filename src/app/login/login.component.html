@@ -1,8 +1,8 @@
 <div class="login" *ngIf="!isUserLoggedIn">
   <form action="" class="login__form" (ngSubmit)="login(form)" #form="ngForm">
       <div class="login__group" *ngFor="let input of formData.inputs">
-        <label [for]="input.id">{{ input.text }} {{ input.required ? '*' : '' }}</label>
-        <input 
+        <label class="login__label" [for]="input.id">{{ input.text }} {{ input.required ? '*' : '' }}</label>
+        <input class="login__input" 
         [type]="input.type" 
         [name]="input.id" 
         [maxlength]="input.maxLength" 
@@ -10,10 +10,10 @@
         [required]="input.required" 
         ngModel>
       </div>
-      <button type="submit" [disabled]="!form.valid">{{ formData.buttons[0].text }}</button>
+      <button type="submit" class="login__btn" [disabled]="!form.valid">{{ formData.buttons[0].text }}</button>
   </form>  
 </div>
-<div class="logged" *ngIf="isUserLoggedIn">
-  Welcome! {{ user.user }}
-  <button (click)="logout()">{{ formData.buttons[1].text }}</button>
+<div class="login" *ngIf="isUserLoggedIn">
+  <h4 class="login__title">Welcome! {{ user.user }}</h4> 
+  <button class="login__btn" (click)="logout()">{{ formData.buttons[1].text }}</button>
 </div>

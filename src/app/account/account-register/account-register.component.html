@@ -1,31 +1,27 @@
 <div class="account-register" *ngIf="registerSuccess === null">
   <h4 class="account-register__title">{{ formData.title }}</h4>
-  <form class="account-register__form" (ngSubmit)="register(form)" #form="ngForm">
-    <div class="account-register__group" *ngFor="let input of formData.inputs">
-      <label [for]="input.id" class="account-register__group-label">{{ input.label }} {{ input.required ? '*' : '' }}</label>
-      <input type="{{ input.type }}" class="account-register__group-input"  
-      [required]="input.required"
-      [pattern]="input.pattern" 
-      [name]="input.id" 
-      [maxlength]="input.maxLength"
-      ngModel>
+  <form class="form" (ngSubmit)="register(form)" #form="ngForm">
+    <div class="form__group" *ngFor="let input of formData.inputs">
+      <label [for]="input.id" class="form__label">{{ input.label }} {{ input.required ? '*' : '' }}</label>
+      <input class="form__input" [type]="input.type" [required]="input.required" [pattern]="input.pattern" [name]="input.id"
+        [maxlength]="input.maxLength" ngModel>
     </div>
-    <label for="" class="account-register__label">{{ formData.legend }}</label>
-    <button type="{{ formData.button.type }}" class="account-register__button" [disabled]="!form.valid">{{ formData.button.text }}</button>
+    <div class="form__bottom">
+      <label for="" class="form__label">{{ formData.legend }}</label>
+      <button class="btn btn--grey" [type]="formData.button.type" [disabled]="!form.valid">{{ formData.button.text }}</button>
+    </div>
   </form>
 </div>
-<div class="account-register-completed">
-  <div class="account-register-completed__unsuccessful" *ngIf="registerSuccess === false">
-    <h4>Oops! We found some errors please try again! :(</h4>
-  </div>
-  <div class="account-register-completed__success" *ngIf="registerSuccess">
-    <h3>{{ formData.title }}  {{ user.user }}</h3>
-    <h4>{{ formData.subTitle }}</h4>
-    <ul class="account-register-completed__list">
-      <li class="account-register-completed__list-item" *ngFor="let item of formData.list">
-        {{ item.text }}
-      </li>
-    </ul>
-    <p class="account-register-completed__paragraph">{{ formData.text }}</p>
-  </div>
+<div class="account-register-completed" *ngIf="registerSuccess === false">
+  <h4 class="account-register-completed__title">Oops! We found some errors please try again! :(</h4>
+</div>
+<div class="account-register-completed" *ngIf="registerSuccess">
+  <h3 class="account-register-completed__title">{{ formData.title }} {{ user.user }}</h3>
+  <h4 class="account-register-completed__subtitle">{{ formData.subTitle }}</h4>
+  <ul class="account-register-completed__list">
+    <li class="account-register-completed__list-item" *ngFor="let item of formData.list">
+      {{ item.text }}
+    </li>
+  </ul>
+  <p class="account-register-completed__paragraph">{{ formData.text }}</p>
 </div>

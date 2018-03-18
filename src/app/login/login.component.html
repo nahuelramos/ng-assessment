@@ -1,3 +1,19 @@
-<p>
-  login works!
-</p>
+<div class="login" *ngIf="!isUserLoggedIn">
+  <form action="" class="login__form" (ngSubmit)="login(form)" #form="ngForm">
+      <div class="login__group" *ngFor="let input of formData.inputs">
+        <label [for]="input.id">{{ input.text }} {{ input.required ? '*' : '' }}</label>
+        <input 
+        [type]="input.type" 
+        [name]="input.id" 
+        [maxlength]="input.maxLength" 
+        [minLength]="input.minLength" 
+        [required]="input.required" 
+        ngModel>
+      </div>
+      <button type="submit" [disabled]="!form.valid">{{ formData.buttons[0].text }}</button>
+  </form>  
+</div>
+<div class="logged" *ngIf="isUserLoggedIn">
+  Welcome! {{ user.user }}
+  <button (click)="logout()">{{ formData.buttons[1].text }}</button>
+</div>

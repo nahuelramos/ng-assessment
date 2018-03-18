@@ -57,12 +57,12 @@ export class AccountRegisterComponent implements OnInit, OnDestroy {
   }
 
   extractValuesOfForm(form: NgForm) {
-    const dataForServer = {
+    const request = {
       inputs: [form.value],
       accountType: this.accountType
     };
 
-    return dataForServer;
+    return request;
   }
 
 }

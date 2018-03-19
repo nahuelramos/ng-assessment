@@ -46,11 +46,10 @@ export class AccountRegisterComponent implements OnInit, OnDestroy {
     this.serviceObservableSend = this.accountService.sendAccountRegister(
       this.extractValuesOfForm(form), isUserLoggedIn).subscribe(
       (serverResponse: any) => {
-        this.formData = serverResponse.form;
         if (isUserLoggedIn) {
           this.user = this.loginService.getUser();
-          console.log(this.user);
         }
+        this.formData = serverResponse.form;
         this.registerSuccess = serverResponse.registerSuccess;
       },
       (error: any) => { this.registerSuccess = false; alert(error); }

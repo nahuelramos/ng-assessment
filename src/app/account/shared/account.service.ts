@@ -3,7 +3,7 @@ import { Observer } from 'rxjs/Observer';
 
 export class AccountService {
     // This variables form should be in a new file.
-    accountTypeForm: {} = {
+    accountTypeForm = {
         form: {
             buttons: [
                 {
@@ -24,7 +24,7 @@ export class AccountService {
         }
     };
 
-    accountRegisterGuestForm: {} = {
+    accountRegisterGuestForm = {
         form: {
             button: {
                 text: 'send',
@@ -69,7 +69,7 @@ export class AccountService {
         }
     };
 
-    accountRegisterAgencyForm: {} = {
+    accountRegisterAgencyForm = {
         form: {
             button: {
                 text: 'send',
@@ -77,7 +77,7 @@ export class AccountService {
             },
             inputs: [
                 {
-                    id: 'agencyName',
+                    id: 'name',
                     label: 'Agency name',
                     maxLength: 40,
                     required: true,
@@ -85,7 +85,7 @@ export class AccountService {
                     validationMessage: 'please enter a agency name!'
                 },
                 {
-                    id: 'agencyContactName',
+                    id: 'name',
                     label: 'Contact name',
                     maxLength: 30,
                     required: true,
@@ -93,7 +93,7 @@ export class AccountService {
                     validationMessage: 'please enter a contact name!'
                 },
                 {
-                    id: 'agencyContactName',
+                    id: 'name',
                     label: 'Contact email',
                     maxLength: 40,
                     required: true,
@@ -101,7 +101,7 @@ export class AccountService {
                     validationMessage: 'please enter a valid email!'
                 },
                 {
-                    id: 'agencyCode',
+                    id: 'name',
                     label: 'Agency id code',
                     maxLength: 40,
                     required: false,
@@ -113,7 +113,7 @@ export class AccountService {
         }
     };
 
-    accountRegisterCompanyForm: {} = {
+    accountRegisterCompanyForm = {
         form: {
             button: {
                 text: 'send',
@@ -121,7 +121,7 @@ export class AccountService {
             },
             inputs: [
                 {
-                    id: 'companyName',
+                    id: 'name',
                     label: 'Company name',
                     maxLength: 40,
                     required: true,
@@ -129,7 +129,7 @@ export class AccountService {
                     validationMessage: 'please enter a company name!'
                 },
                 {
-                    id: 'companyEmail',
+                    id: 'email',
                     label: 'Contact email',
                     maxLength: 40,
                     required: true,
@@ -137,7 +137,7 @@ export class AccountService {
                     validationMessage: 'please enter a valid email!'
                 },
                 {
-                    id: 'companyPhone',
+                    id: 'phone',
                     label: 'Phone',
                     required: true,
                     maxLength: 15,
@@ -145,8 +145,8 @@ export class AccountService {
                     validationMessage: 'please enter a phone! e.g. 54 351 3920406'
                 },
                 {
-                    id: 'companyComments',
-                    label: 'Comments', // text-area
+                    id: 'comments',
+                    label: 'Comments', // this sould be a text-area
                     maxLength: 200,
                     required: false,
                     type: 'text'
@@ -157,7 +157,7 @@ export class AccountService {
         }
     };
 
-    accountRegisterCompletedForLogin: {} = {
+    accountRegisterCompletedForLogin = {
         registerSuccess: true,
         form: {
             button: {
@@ -178,7 +178,7 @@ export class AccountService {
         }
     };
 
-    accountRegisterCompleted: {} = {
+    accountRegisterCompleted = {
         registerSuccess: true,
         form: {
             button: {
@@ -187,7 +187,8 @@ export class AccountService {
             list: [],
             subTitle: 'Thank you!',
             text: 'Shortly we will be in contact',
-            title: 'Welcome'
+            title: 'Welcome',
+            name: '',
         }
     };
 
@@ -215,6 +216,8 @@ export class AccountService {
             if (userLogged) {
                 observer.next(this.accountRegisterCompletedForLogin);
             } else {
+                // this logic 'this.accountRegisterCompleted.name = formData.name' should be in the "API"
+                this.accountRegisterCompleted.form.name = formData.inputs[0].name;
                 observer.next(this.accountRegisterCompleted);
             }
         });

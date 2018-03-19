@@ -23,7 +23,7 @@
   <h4 class="account-register-completed__title">Oops! We found some errors please try again! :(</h4>
 </div>
 <div class="account-register-completed" *ngIf="registerSuccess">
-  <h3 class="account-register-completed__title">{{ formData.title }} {{ user.user }}</h3>
+  <h3 class="account-register-completed__title">{{ formData.title }} {{ isUserLoggedIn ? user.user : formData.name }}</h3>
   <h4 class="account-register-completed__subtitle">{{ formData.subTitle }}</h4>
   <ul class="account-register-completed__list">
     <li class="account-register-completed__list-item" *ngFor="let item of formData.list">

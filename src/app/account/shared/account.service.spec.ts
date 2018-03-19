@@ -4,6 +4,10 @@ import { AccountService } from './account.service';
 
 describe('Test AccountService', () => {
   let service: AccountService;
+  const request = {
+    inputs: [{name:'test'}, {email: 'email@test.com'}],
+    accountType: 'guest'
+  };
 
   beforeEach(() => {
     service = new AccountService;
@@ -27,7 +31,7 @@ describe('Test AccountService', () => {
 
   it('should send account register without user logged',
     (done: DoneFn) => {
-      service.sendAccountRegister({}, false).subscribe(data => {
+      service.sendAccountRegister(request, false).subscribe(data => {
         expect(data).toBe(service.accountRegisterCompleted);
         done();
       });
@@ -35,7 +39,7 @@ describe('Test AccountService', () => {
 
   it('should send account register with user logged',
     (done: DoneFn) => {
-      service.sendAccountRegister({}, true).subscribe(data => {
+      service.sendAccountRegister(request, true).subscribe(data => {
         expect(data).toBe(service.accountRegisterCompletedForLogin);
         done();
       });

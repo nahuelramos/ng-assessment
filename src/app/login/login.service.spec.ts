@@ -19,7 +19,7 @@ describe('Test AccountService', () => {
 
   it('should login correctly',
     (done: DoneFn) => {
-        let user = { user: 'usertest', password: 'passwordtest' }
+        const user = { user: 'usertest', password: 'passwordtest' };
         service.login(user).subscribe(isLoggedIn => {
             expect(isLoggedIn).toBe(true);
             done();

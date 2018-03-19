@@ -2,6 +2,7 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 
 export class AccountService {
+    // This variables form should be in a new file.
     accountTypeForm: {} = {
         form: {
             buttons: [
@@ -35,28 +36,32 @@ export class AccountService {
                     label: 'Name',
                     maxLength: 30,
                     required: true,
-                    type: 'text'
+                    type: 'text',
+                    validationMessage: 'please enter a name!'
                 },
                 {
                     id: 'lastName',
                     label: 'Last name',
                     maxLength: 20,
                     required: true,
-                    type: 'text'
+                    type: 'text',
+                    validationMessage: 'please a last name!'
                 },
                 {
                     id: 'email',
                     label: 'Email',
                     maxLength: 40,
                     required: true,
-                    type: 'email'
+                    type: 'email',
+                    validationMessage: 'please enter a valid email!'
                 },
                 {
                     id: 'phone',
                     label: 'Phone',
-                    pattern: '^(\([0-9]{3}\)|[0-9]{3}-)[0-9]{3}-[0-9]{4}$',
+                    maxLength: 15,
                     required: false,
-                    type: 'text'
+                    type: 'text',
+                    validationMessage: 'please enter a phone! e.g. 54 351 3920406'
                 },
             ],
             legend: '* required fields',
@@ -76,21 +81,24 @@ export class AccountService {
                     label: 'Agency name',
                     maxLength: 40,
                     required: true,
-                    type: 'text'
+                    type: 'text',
+                    validationMessage: 'please enter a agency name!'
                 },
                 {
                     id: 'agencyContactName',
                     label: 'Contact name',
                     maxLength: 30,
                     required: true,
-                    type: 'text'
+                    type: 'text',
+                    validationMessage: 'please enter a contact name!'
                 },
                 {
                     id: 'agencyContactName',
                     label: 'Contact email',
                     maxLength: 40,
                     required: true,
-                    type: 'email'
+                    type: 'email',
+                    validationMessage: 'please enter a valid email!'
                 },
                 {
                     id: 'agencyCode',
@@ -117,21 +125,24 @@ export class AccountService {
                     label: 'Company name',
                     maxLength: 40,
                     required: true,
-                    type: 'text'
+                    type: 'text',
+                    validationMessage: 'please enter a company name!'
                 },
                 {
                     id: 'companyEmail',
                     label: 'Contact email',
                     maxLength: 40,
                     required: true,
-                    type: 'email'
+                    type: 'email',
+                    validationMessage: 'please enter a valid email!'
                 },
                 {
                     id: 'companyPhone',
                     label: 'Phone',
-                    pattern: '^(\([0-9]{3}\)|[0-9]{3}-)[0-9]{3}-[0-9]{4}$',
                     required: true,
-                    type: 'text'
+                    maxLength: 15,
+                    type: 'text',
+                    validationMessage: 'please enter a phone! e.g. 54 351 3920406'
                 },
                 {
                     id: 'companyComments',

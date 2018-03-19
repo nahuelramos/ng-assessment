@@ -3,8 +3,15 @@
   <form class="form" (ngSubmit)="register(form)" #form="ngForm">
     <div class="form__group" *ngFor="let input of formData.inputs">
       <label [for]="input.id" class="form__label">{{ input.label }} {{ input.required ? '*' : '' }}</label>
-      <input class="form__input" [type]="input.type" [required]="input.required" [pattern]="input.pattern" [name]="input.id"
-        [maxlength]="input.maxLength" ngModel>
+      <input class="form__input" 
+      [type]="input.type" 
+      [required]="input.required" 
+      [pattern]="input.pattern" 
+      [name]="input.id"
+      [maxlength]="input.maxLength"
+      email="{{input.type === 'email'}}" 
+      ngModel>
+      <p class="validation" *ngIf="form.form.controls[input.id] && form.form.controls[input.id]?.invalid && form.form.controls[input.id].touched">{{input.validationMessage}}</p>
     </div>
     <div class="form__bottom">
       <label for="" class="form__label">{{ formData.legend }}</label>
